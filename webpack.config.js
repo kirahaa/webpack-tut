@@ -4,11 +4,11 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 module.exports = {
     mode: "development",
     entry: {
-        main: "./src/index.js",
+        app: './src/assets/js/index.js',
     },
     output: {
-        filename: "app.js",
-        path: path.resolve(__dirname, "./dist"),
+        filename: "app.bundle.js",
+        path: path.resolve(__dirname, "./dist/"),
     },
     // optimization: {
     //     minimizer: []
@@ -16,25 +16,27 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.js$/,
+                include: path.resolve(__dirname, 'src/assets/js'),
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        plugins: ['@babel/plugin-proposal-class-properties']
+                    }
+                },
+            },
+            {
                 test: /\.html$/,
                 use: [
                     {
                         loader: "html-loader",
-                        options: {
-                            minimize: true // 옵션값들.
-                        }
+                        // options: {
+                        //     minimize: true // 옵션값들.
+                        // }
                     }
                 ]
-            },
-            {
-                test: /\.m?js$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
-                }
             }
         ]
     },

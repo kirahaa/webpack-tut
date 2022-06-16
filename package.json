@@ -3,9 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.17.12",
+    "@babel/runtime": "^7.18.3",
+    "@babel/runtime-corejs3": "^7.18.3"
+  },
   "devDependencies": {
+    "@babel/cli": "^7.17.10",
     "@babel/core": "^7.18.5",
+    "@babel/plugin-transform-runtime": "^7.18.5",
     "@babel/preset-env": "^7.18.2",
     "babel-loader": "^8.2.5",
     "html-loader": "^3.1.2",
@@ -16,7 +22,7 @@
     "webpack-cli": "^4.10.0"
   },
   "scripts": {
-    "build": "webpack",
+    "build": "babel src/assets/js -w -d dist/js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
