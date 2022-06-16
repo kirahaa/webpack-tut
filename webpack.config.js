@@ -1,5 +1,4 @@
 const path = require("path");
-const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: "development",
@@ -7,12 +6,9 @@ module.exports = {
         app: './src/assets/js/index.js',
     },
     output: {
-        filename: "app.bundle.js",
+        filename: "app.js",
         path: path.resolve(__dirname, "./dist/"),
     },
-    // optimization: {
-    //     minimizer: []
-    // },
     module: {
         rules: [
             {
@@ -26,24 +22,7 @@ module.exports = {
                         plugins: ['@babel/plugin-proposal-class-properties']
                     }
                 },
-            },
-            {
-                test: /\.html$/,
-                use: [
-                    {
-                        loader: "html-loader",
-                        // options: {
-                        //     minimize: true // 옵션값들.
-                        // }
-                    }
-                ]
             }
         ]
     },
-    plugins: [
-        new HtmlWebPackPlugin({
-            template: "./src/index.html",  // input
-            filename: "./index.html"  // output : dist 폴더의 index.html
-        })
-    ]
 }
