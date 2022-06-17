@@ -1,5 +1,6 @@
 const path = require("path")
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const port = process.env.PORT || 3000;
 
 module.exports = {
@@ -15,10 +16,12 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/,
+                test: /\.s[ac]ss$/,
+                exclude: /node_modules/,
                 use: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     'css-loader',
+                    'sass-loader',
                 ],
             },
             {
@@ -41,6 +44,10 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: "dist/index.html"
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'style.css',
+            chunkFilename: "[id].css"
         })
     ],
     devServer: {

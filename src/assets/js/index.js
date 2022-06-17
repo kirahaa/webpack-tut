@@ -1,9 +1,8 @@
 import { sayHello } from './util';
-import css from '../css/style.css';
+import '../css/style.scss';
 
 function myFunc() {
     sayHello('jack');
     console.log('myFunc');
 }
 myFunc();
-console.log('css', css);
