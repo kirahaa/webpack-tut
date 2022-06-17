@@ -1,4 +1,6 @@
-const path = require("path");
+const path = require("path")
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const port = process.env.PORT || 3000;
 
 module.exports = {
     mode: "development",
@@ -6,23 +8,44 @@ module.exports = {
         app: './src/assets/js/index.js',
     },
     output: {
-        filename: "app.js",
-        path: path.resolve(__dirname, "./dist/"),
+        filename: "app.bundle.js",
+        path: path.resolve(__dirname, "dist"),
+        clean: true,
     },
     module: {
         rules: [
             {
-                test: /\.js$/,
-                include: path.resolve(__dirname, 'src/assets/js'),
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                ],
+            },
+            {
+                test: /\. (js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: ['@babel/preset-env'],
-                        plugins: ['@babel/plugin-proposal-class-properties']
-                    }
+                    loader: 'babel-loader',
                 },
-            }
+            },
+            {
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: 'html-loader',
+                    }
+                ]
+            },
         ]
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: "dist/index.html"
+        })
+    ],
+    devServer: {
+        host: 'localhost',
+        port: port,
+        open: true,
+    }
 }
