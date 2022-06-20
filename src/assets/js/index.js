@@ -1,6 +1,5 @@
 import { sayHello } from './util';
 import '../css/style.scss';
-import image from '../images/webpack.png';
 
 function addImage() {
     const img = document.createElement('img');

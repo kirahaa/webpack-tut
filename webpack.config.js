@@ -26,23 +26,27 @@ module.exports = {
                 ],
             },
             {
-                test: /\. (js|jsx)$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
                 },
             },
-            {
-                test: /\.html$/,
-                use: [
-                    {
-                        loader: 'html-loader',
-                    }
-                ]
-            },
+            // {
+            //     test: /\.html$/,
+            //     use: [
+            //         {
+            //             loader: 'html-loader',
+            //         }
+            //     ]
+            // },
             {
                 test: /\.(png|svg|jpe?g|gif)$/i,
                 loader: "file-loader",
+                options: {
+                    name: '[name].[ext]',
+                    publicPath: 'dist/images'
+                }
             }
         ]
     },
@@ -56,7 +60,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin({
             patterns: [
-                { from: './src/assets/images/', to: './images/', toType: 'dir'}
+                { from: 'src/assets/images', to: 'images', toType: 'dir'}
             ]
         })
     ],
