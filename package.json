@@ -34,7 +34,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "dev": "webpack serve --open --mode=development",
+    "serve": "webpack serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

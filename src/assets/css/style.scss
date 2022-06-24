@@ -1,9 +1,25 @@
 
-
 body {
-  background-color: lightskyblue;
-  color: tomato;
+    background-color: #000;
+    color: tomato;
+    text-align: center;
+    //background-image: url('../images/webpack.png');
 }
+
 p {
-  font-size: 20px;
+    font-size: 20px;
+
+    &:hover {
+        background-color: red;
+    }
+}
+
+.webpack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    &__logo {
+        width: 30%;
+    }
 }
