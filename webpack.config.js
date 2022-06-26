@@ -21,7 +21,12 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    'css-loader',
+                    {
+                      loader: 'css-loader',
+                      options: {
+                          url: true,
+                      }
+                    },
                     'sass-loader',
                 ],
             },
@@ -32,21 +37,17 @@ module.exports = {
                     loader: 'babel-loader',
                 },
             },
-            // {
-            //     test: /\.html$/,
-            //     use: [
-            //         {
-            //             loader: 'html-loader',
-            //         }
-            //     ]
-            // },
             {
-                test: /\.(png|svg|jpe?g|gif)$/i,
-                loader: "file-loader",
+                test: /\.(png|jpe?g)$/i,
+                loader: "url-loader",
                 options: {
-                    name: '[name].[ext]',
-                    publicPath: 'dist/images'
+                    limit: 8000,
+                    name: 'images/[name].[ext]',
                 }
+            },
+            {
+                test: /\.svg$/,
+                loader: "file-loader",
             }
         ]
     },

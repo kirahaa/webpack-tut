@@ -23,3 +23,9 @@ p:hover {
 .webpack__logo {
   width: 30%;
 }
+
+.test {
+  width: 100px;
+  height: 100px;
+  background: center/cover no-repeat url(36b5ad39e5a3cbb77792.png);
+}

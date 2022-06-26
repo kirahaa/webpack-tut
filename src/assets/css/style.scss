@@ -3,7 +3,6 @@ body {
     background-color: #000;
     color: tomato;
     text-align: center;
-    //background-image: url('../images/webpack.png');
 }
 
 p {
@@ -22,4 +21,10 @@ p {
     &__logo {
         width: 30%;
     }
+}
+
+.test {
+    width: 100px;
+    height: 100px;
+    background: center / cover no-repeat url('../images/webpack.png');
 }
