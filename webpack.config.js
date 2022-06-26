@@ -11,7 +11,7 @@ module.exports = {
     },
     output: {
         filename: "app.bundle.js",
-        path: path.resolve(__dirname, "dist"),
+        path: path.resolve(__dirname, "public"),
         clean: true,
     },
     module: {
@@ -52,7 +52,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "dist/index.html"
+            template: "public/index.html"
         }),
         new MiniCssExtractPlugin({
             filename: 'style.css',
