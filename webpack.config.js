@@ -1,4 +1,5 @@
-const path = require("path")
+const path = require("path");
+const sass = require("sass");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -10,7 +11,7 @@ module.exports = {
         app: './src/assets/js/index.js',
     },
     output: {
-        filename: "app.bundle.js",
+        filename: "./js/app.bundle.js",
         path: path.resolve(__dirname, "public"),
         clean: true,
     },
@@ -21,13 +22,13 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,
+                    "css-loader",
                     {
-                      loader: 'css-loader',
-                      options: {
-                          url: true,
-                      }
-                    },
-                    'sass-loader',
+                        loader: "sass-loader",
+                        options: {
+                            implementation: sass,  // dart-sass 적용
+                        }
+                    }
                 ],
             },
             {
@@ -37,18 +38,6 @@ module.exports = {
                     loader: 'babel-loader',
                 },
             },
-            {
-                test: /\.(png|jpe?g)$/i,
-                loader: "url-loader",
-                options: {
-                    limit: 8000,
-                    name: 'images/[name].[ext]',
-                }
-            },
-            {
-                test: /\.svg$/,
-                loader: "file-loader",
-            }
         ]
     },
     plugins: [
@@ -56,7 +45,7 @@ module.exports = {
             template: "public/index.html"
         }),
         new MiniCssExtractPlugin({
-            filename: 'style.css',
+            filename: './css/style.css',
             chunkFilename: "[id].css"
         }),
         new CopyWebpackPlugin({
@@ -65,9 +54,11 @@ module.exports = {
             ]
         })
     ],
+    target: 'web',
     devServer: {
-        host: 'localhost',
-        port: port,
+        hot: false,
+        liveReload: true,
         open: true,
-    }
+        port: port,
+    },
 }
