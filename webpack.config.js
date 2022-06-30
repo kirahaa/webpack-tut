@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const port = process.env.PORT || 3000;
 
 module.exports = {
-    mode: "development",
+    mode: "production",
     entry: {
         app: './src/assets/js/index.js',
     },
@@ -43,6 +43,10 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: "src/index.html",
+            minify: process.env.NODE_ENV === 'production' ? {
+                collapseWhitespace: true, // 빈칸 제거
+                removeComments: true, // 주석 제거
+            } : false,
         }),
         new MiniCssExtractPlugin({
             filename: './css/style.css',
