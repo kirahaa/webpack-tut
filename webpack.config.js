@@ -18,26 +18,33 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.s[ac]ss$/,
-                exclude: /node_modules/,
+                test: /\.(css|sass|scss)$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
-                    "css-loader",
-                    {
-                        loader: "sass-loader",
-                        options: {
-                            implementation: sass,  // dart-sass 적용
-                        }
-                    }
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
                 ],
             },
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                },
-            },
+            // {
+            //     test: /\.s[ac]ss$/,
+            //     exclude: /node_modules/,
+            //     use: [
+            //         MiniCssExtractPlugin.loader,
+            //         "css-loader",
+            //         {
+            //             loader: "sass-loader",
+            //             options: {
+            //                 implementation: sass,  // dart-sass 적용
+            //             }
+            //         }
+            //     ],
+            // },
+            // {
+            //     test: /\.(js|jsx)$/,
+            //     use: {
+            //         loader: 'babel-loader',
+            //     },
+            // },
         ]
     },
     plugins: [
